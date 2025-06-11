@@ -35,6 +35,8 @@ import InviteMemberModal from "@/components/InviteMemberModal";
 import { InviteMemberModalProvider } from "@/hooks/useInviteMemberModal";
 import NewProjectModal from "@/components/NewProjectModal";
 import { NewProjectModalProvider } from "@/hooks/useNewProjectModal";
+import DeleteConfirmModal from "@/components/DeleteConfirmModal";
+import { DeleteConfirmModalProvider } from "@/hooks/useDeleteConfirmModal";
 import { ThemeProvider } from "../hooks/useTheme";
 import { useColors } from "../hooks/useColors";
 import { useLocalStorageDebug } from "../hooks/useLocalStorage";
@@ -246,6 +248,11 @@ function HomeContent() {
         <EditProjectModal />
         <InviteMemberModal />
         <NewProjectModal />
+        <DeleteConfirmModal
+          onDelete={(projectName) =>
+            showToastMessage(`"${projectName}" has been deleted`, "success")
+          }
+        />
 
         {/* Toast notifications */}
         <Toast
@@ -273,15 +280,17 @@ export default function Home() {
                 <EditProjectModalProvider>
                   <InviteMemberModalProvider>
                     <NewProjectModalProvider>
-                      <AccountModalProvider>
-                        <SettingsModalProvider>
-                          <UpdatesModalProvider>
-                            <ContactModalProvider>
-                              <HomeContent />
-                            </ContactModalProvider>
-                          </UpdatesModalProvider>
-                        </SettingsModalProvider>
-                      </AccountModalProvider>
+                      <DeleteConfirmModalProvider>
+                        <AccountModalProvider>
+                          <SettingsModalProvider>
+                            <UpdatesModalProvider>
+                              <ContactModalProvider>
+                                <HomeContent />
+                              </ContactModalProvider>
+                            </UpdatesModalProvider>
+                          </SettingsModalProvider>
+                        </AccountModalProvider>
+                      </DeleteConfirmModalProvider>
                     </NewProjectModalProvider>
                   </InviteMemberModalProvider>
                 </EditProjectModalProvider>

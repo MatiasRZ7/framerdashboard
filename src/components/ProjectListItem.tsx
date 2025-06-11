@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { Project } from "@/types";
 import { useProjects } from "@/hooks/useProjects";
 import { useEditProjectModal } from "@/hooks/useEditProjectModal";
+import { useDeleteConfirmModal } from "@/hooks/useDeleteConfirmModal";
 import { useMenuManager } from "@/hooks/useMenuManager";
 
 interface ProjectListItemProps {
@@ -24,6 +25,7 @@ export default function ProjectListItem({
     unarchiveProject,
   } = useProjects();
   const { openModal } = useEditProjectModal();
+  const { openModal: openDeleteModal } = useDeleteConfirmModal();
   const { openMenuId, setOpenMenuId } = useMenuManager();
   const showMenu = openMenuId === project.id;
   const [isRenaming, setIsRenaming] = useState(false);
@@ -264,8 +266,8 @@ export default function ProjectListItem({
                 data-no-drag
                 style={{
                   // Ajustar posición para que no se corte
-                  transform: 'translateY(-70%)',
-                  top: '50%',
+                  transform: "translateY(-70%)",
+                  top: "50%",
                 }}
               >
                 {/* Edit */}
@@ -373,11 +375,7 @@ export default function ProjectListItem({
                 {/* Delete */}
                 <button
                   onClick={() => {
-                    if (
-                      confirm("Are you sure you want to delete this project?")
-                    ) {
-                      deleteProject(project.id);
-                    }
+                    openDeleteModal(project);
                     setOpenMenuId(null);
                   }}
                   className="w-full px-2.5 py-1 text-left text-sm text-red-400 hover:bg-red-900/20 transition-colors flex items-center gap-2"
