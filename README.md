@@ -2,6 +2,7 @@
 
 A modern, feature-rich dashboard application inspired by Framer's interface, built with Next.js, TypeScript, and Framer Motion. This project demonstrates advanced React patterns, smooth animations, and professional UI/UX design.
 
+Live: https://framerdashboard.vercel.app
 ## 🎯 Project Overview
 
 This is a comprehensive dashboard clone that recreates the core functionality and design patterns found in Framer's project management interface. The application features project management, drag & drop functionality, a command palette system, and a sophisticated folder organization system.
