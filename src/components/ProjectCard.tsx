@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { Project } from "@/types";
 import { useProjects } from "@/hooks/useProjects";
 import { useEditProjectModal } from "@/hooks/useEditProjectModal";
@@ -14,6 +15,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
+  const router = useRouter();
   const {
     deleteProject,
     updateProject,
@@ -330,6 +332,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 <button
                   onClick={() => {
                     updateProject(project.id, { lastViewedAt: new Date() });
+                    router.push(`/builder/${project.id}`);
                     setOpenMenuId(null);
                   }}
                   className="w-full px-2.5 py-1 text-left text-sm text-white hover:bg-[#3a3a3a] transition-colors flex items-center gap-2"

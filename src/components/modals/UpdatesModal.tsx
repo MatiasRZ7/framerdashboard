@@ -9,6 +9,7 @@ import {
   useCallback,
 } from "react";
 import Modal from "../Modal";
+import WebBuilderStatusBadge from "../WebBuilderStatusBadge";
 
 // Estado global para el modal
 let isUpdatesModalOpen = false;
@@ -21,6 +22,14 @@ interface UpdatesModalProps {
 const updates = [
   {
     id: 1,
+    title: "🎉 Web Builder Now Live!",
+    description:
+      "Our advanced web builder is now fully functional! Create stunning websites with drag & drop, vector tools, and real-time editing.",
+    date: "Just now",
+    type: "feature",
+  },
+  {
+    id: 2,
     title: "New Component Library",
     description:
       "We've added a comprehensive component library with over 100 pre-built components.",
@@ -28,7 +37,7 @@ const updates = [
     type: "feature",
   },
   {
-    id: 2,
+    id: 3,
     title: "Performance Improvements",
     description:
       "Faster loading times and improved rendering performance across all projects.",
@@ -36,7 +45,7 @@ const updates = [
     type: "improvement",
   },
   {
-    id: 3,
+    id: 4,
     title: "Bug Fixes",
     description:
       "Fixed issues with project sharing and collaboration features.",
@@ -114,6 +123,11 @@ export function UpdatesModal({ isOpen }: UpdatesModalProps) {
       width="max-w-2xl"
     >
       <div className="p-6">
+        {/* Web Builder Status Badge */}
+        <div className="flex justify-center mb-6">
+          <WebBuilderStatusBadge size="md" />
+        </div>
+
         <div className="space-y-4">
           {updates.map((update) => (
             <div key={update.id} className="bg-[#2a2a2a] rounded-lg p-4">

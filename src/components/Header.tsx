@@ -5,6 +5,7 @@ import { useInviteMemberModal } from "@/hooks/useInviteMemberModal";
 import { useNewProjectModal } from "@/hooks/useNewProjectModal";
 import { useColors } from "../hooks/useColors";
 import { useCommandPalette } from "@/hooks/useCommandPalette";
+import WebBuilderStatusBadge from "./WebBuilderStatusBadge";
 
 export default function Header() {
   const { openModal: openInviteModal } = useInviteMemberModal();
@@ -21,6 +22,8 @@ export default function Header() {
     >
       {/* Right Actions */}
       <div className="flex items-center gap-3">
+        {/* Web Builder Status Badge */}
+        <WebBuilderStatusBadge size="sm" />
         {/* Command Palette Button */}
         <motion.button
           onClick={openPalette}
